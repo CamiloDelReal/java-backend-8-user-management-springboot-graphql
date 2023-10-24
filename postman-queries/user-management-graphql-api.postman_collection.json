@@ -1,0 +1,277 @@
+{
+	"info": {
+		"_postman_id": "e36cb64b-d5e3-4b66-99c2-fda92e427851",
+		"name": "User Management GraphQL API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20647569"
+	},
+	"item": [
+		{
+			"name": "Login Administrator",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation login($email: String!, $password: String!) {\n    login(credential: {\n        email: $email\n        password: $password\n    }) {\n        type\n        token\n        expiration\n    }\n}",
+						"variables": "{\n    \"email\": \"root1@gmail.com\",\n    \"password\": \"123456\"\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Generic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation login($email: String!, $password: String!) {\n    login(credential: {\n        email: $email\n        password: $password\n    }) {\n        type\n        token\n        expiration\n    }\n}",
+						"variables": "{\n    \"email\": \"jane3@gmail.com\",\n    \"password\": \"qwerty9\"\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read all users",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query readAllUsers {\n    getUsers {\n        id\n        name\n        roles {\n            id\n            value\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read user by Id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query readUserById($id: Int) {\n    getUser(id: $id) {\n        id\n        name\n        roles {\n            id\n            value\n        }\n    }\n}",
+						"variables": "{\n    \"id\": 1\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read all roles",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query readAllRoles {\n    getRoles {\n        id\n        value\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read role by Id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query readRoleById($id: Int) {\n    getRole(id: $id) {\n        id\n        value\n    }\n}",
+						"variables": "{\n    \"id\": 3\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJpZFwiOjEsXCJuYW1lXCI6XCJSb290XCIsXCJsYXN0bmFtZVwiOlwiZnJvbSBIZWF2ZW5cIixcImVtYWlsXCI6XCJyb290QGdtYWlsLmNvbVwiLFwicGFzc3dvcmRQcm90ZWN0ZWRcIjpcIlwifSIsImp0aSI6ImFjNjAzMTBjLWM2NmItNDM1MS1hMDE4LWJjMTU1YjU4ZDI2ZiIsImlhdCI6MTY5ODA3MjI5NiwiZXhwIjoxNzIzOTkyMjk2fQ.F4KcUTE671ncXxV_Iet_Elw2CZD7NAcrvfFwcsZBcKA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createUser(\n    $name: String!\n    $lastname: String\n    $email: String!\n    $password: String!\n    $roles: [String]\n) {\n    createUser(request: {\n        name: $name\n        lastname: $lastname\n        email: $email\n        password: $password\n        roles: $roles\n    }) {\n        id\n        name\n        lastname\n        email\n        roles {\n            value\n        }\n    }\n}",
+						"variables": "{\n    \"name\": \"Jane2\",\n    \"lastname\": \"Doe\",\n    \"email\": \"jane2@gmail.com\",\n    \"password\": \"qwerty\",\n    \"roles\": [\"Administrator\"]\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJpZFwiOjIsXCJuYW1lXCI6XCJKYW5lM1wiLFwibGFzdG5hbWVcIjpcIkRvZVwiLFwiZW1haWxcIjpcImphbmUzQGdtYWlsLmNvbVwiLFwicGFzc3dvcmRQcm90ZWN0ZWRcIjpcIlwifSIsImp0aSI6IjYzMmM5OWQwLTM1ZDEtNDE4ZS04YmJkLWE1NzdhZjFkYTczZCIsImlhdCI6MTY5ODA3MzQ1MywiZXhwIjoxNzIzOTkzNDUzfQ.OkBexj8NPT_ylV8vPGbxEVmX0P6XQgab6goVfceRZEU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateUser(\n    $id: Int\n    $name: String!\n    $lastname: String\n    $email: String!\n    $password: String!\n    $roles: [String]\n) {\n    updateUser(\n        id: $id\n        request: {\n        name: $name\n        lastname: $lastname\n        email: $email\n        password: $password\n        roles: $roles\n    }) {\n        id\n        name\n        lastname\n        email\n        roles {\n            value\n        }\n    }\n}",
+						"variables": "{\n    \"id\": 2,\n    \"name\": \"Jane3\",\n    \"lastname\": \"Doe\",\n    \"email\": \"jane3@gmail.com\",\n    \"password\": \"qwerty9\",\n    \"roles\": [\"Guest\"]\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJpZFwiOjIsXCJuYW1lXCI6XCJKYW5lM1wiLFwibGFzdG5hbWVcIjpcIkRvZVwiLFwiZW1haWxcIjpcImphbmUzQGdtYWlsLmNvbVwiLFwicGFzc3dvcmRQcm90ZWN0ZWRcIjpcIlwifSIsImp0aSI6IjVkMGZlZTVkLTk0NDQtNDllNS05MjZlLTE4OGQ1MDhlOTQ3ZCIsImlhdCI6MTY5ODA3Mzg2NywiZXhwIjoxNzIzOTkzODY3fQ.DplmXYB9PQq92_TV4xiEJjHW_4ZNXcbRmzeXCX8jvJk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteUser(\n    $id: Int\n) {\n    deleteUser(id: $id)\n}",
+						"variables": "{\n    \"id\": 2\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
