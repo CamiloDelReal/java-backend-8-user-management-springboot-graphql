@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/users_management
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  graphql:
+    graphiql:
+      enabled: true
+
+security:
+  jwt-generation:
+    type: Bearer
+    key: d9de27c3-ad05-4401-8813-521a02996834
+    validity: 25920000000
+    issuer: user-management-service
+
+logging:
+  level:
+    root: info
